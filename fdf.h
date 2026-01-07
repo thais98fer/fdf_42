@@ -3,17 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thfernan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: thfernan <thfernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/06 12:22:04 by thfernan          #+#    #+#             */
-/*   Updated: 2026/01/06 12:24:17 by thfernan         ###   ########.fr       */
+/*   Created: 2026/01/06 17:07:00 by thfernan          #+#    #+#             */
+/*   Updated: 2026/01/06 19:56:18 by thfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
+# include <math.h>
 # include "libft/libft.h"
-# include <mlx.h>
+# include "minilibx-linux/mlx.h"
+
+typedef struct	s_data {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data;
 
 #endif
