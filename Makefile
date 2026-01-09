@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: thfernan <thfernan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2026/01/06 17:37:04 by thfernan          #+#    #+#              #
-#    Updated: 2026/01/06 19:35:22 by thfernan         ###   ########.fr        #
+#    Created: 2026/01/09 16:12:30 by thfernan          #+#    #+#              #
+#    Updated: 2026/01/09 17:47:17 by thfernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,9 @@ NAME = fdf
 BONUS = fdf_bonus
 
 FDF_HDR = fdf.h
-BONUR_HDR = bonus/fdf_bonus.h
+BONUS_HDR = bonus/fdf_bonus.h
 
-FLAGS = -Wall -Wextra -Werror -g3 -I libft -I $(MLX_DIR)
+FLAGS = -Wall -Wextra -Werror -g3 -Ilibft -I$(MLX_DIR)
 MLX_FLAGS = -lXext -lX11 -lm -lz
 
 LIBFT_A = libft/libft.a
@@ -32,7 +32,7 @@ BONUS_DIR = bonus
 #                            fdf sources                          #
 #=================================================================#
 
-SRCS = fdf.c \
+SRCS = fdf.c pixel.c hook.c draw.c read_map.c \
 
 OBJS = $(SRCS:.c=.o)
 
@@ -53,7 +53,7 @@ YELLOW = \033[33m
 BLUE = \033[34m
 
 all: $(NAME)
-	@echo "$(GREEN)	-> Fdf ready $(RESET)"
+	@echo "$(GREEN)	-> FDF ready $(RESET)"
 
 $(OBJS): $(FDF_HDR)
 $(BONUS_OBJS): $(BONUS_HDR)

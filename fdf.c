@@ -6,32 +6,35 @@
 /*   By: thfernan <thfernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 17:53:21 by thfernan          #+#    #+#             */
-/*   Updated: 2026/01/06 20:23:10 by thfernan         ###   ########.fr       */
+/*   Updated: 2026/01/09 17:43:58 by thfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+void	ft_init(t_map *map)
 {
-	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	map->mlx.mlx = mlx_init();
+	map->mlx.window = mlx_new_window(map->mlx.mlx, 1200, 800, "fdf");
+	map->img.img = mlx_new_image(map->mlx.mlx, 1200, 800);
+	map->img.addr = mlx_get_data_addr(map->img.img,
+			&map->img.bpp, &map->img.line_len, &map->img.endian);
+	mlx_key_hook(map->mlx.window, ft_key_hook, map);
+	mlx_hook(map->mlx.window, 17, 0, ft_close, map);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	void	*mlx;
-	void	*mlx_win;
-	t_data	img;
+	t_map	map;
 
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-	img.img = mlx_new_image(mlx, 1920, 1080);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,
-								&img.endian);
-	my_mlx_pixel_put(&img, 5, 5, 0x00FF0000);
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	mlx_loop(mlx);
+	if (argc != 2)
+	{
+		ft_printf("usage: ./fdf map_filename\n");
+		return (1);
+	}
+	ft_read_map(argv[1], &map);
+	ft_init(&map);
+	ft_draw_map(&map);
+	mlx_loop(map.mlx.mlx);
+	return (0);
 }
