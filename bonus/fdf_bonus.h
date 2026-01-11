@@ -6,7 +6,7 @@
 /*   By: thfernan <thfernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 17:07:00 by thfernan          #+#    #+#             */
-/*   Updated: 2026/01/11 04:42:35 by thfernan         ###   ########.fr       */
+/*   Updated: 2026/01/11 11:43:43 by thfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@
 # define KEY_RIGHT 65363
 # define KEY_P 112
 # define KEY_I 105
-# define KEY_O 111
 # define KEY_R 114
 # define KEY_Q 113
 # define KEY_E 101
@@ -49,7 +48,6 @@ typedef enum e_projection
 {
 	ISOMETRIC,
 	PARALLEL,
-	CONIC
 }	t_projection;
 
 typedef struct s_img
@@ -161,7 +159,6 @@ void	ft_apply_rotation(t_map *map, char axis, float angle);
 
 // projections_bonus.c
 t_point	ft_parallel_proj(t_map *map, t_point p);
-t_point	ft_conic_proj(t_map *map, t_point p);
 t_point	ft_apply_projection(t_map *map, t_point p);
 void	ft_handle_projection(int keycode, t_map *map);
 void	ft_handle_zoom_translation(int keycode, t_map *map);

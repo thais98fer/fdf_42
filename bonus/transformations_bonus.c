@@ -6,7 +6,7 @@
 /*   By: thfernan <thfernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 04:01:51 by thfernan          #+#    #+#             */
-/*   Updated: 2026/01/11 11:10:23 by thfernan         ###   ########.fr       */
+/*   Updated: 2026/01/11 11:53:55 by thfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,16 @@ t_point	ft_rotate_z(t_point p, float angle)
 t_point	ft_apply_transformations(t_map *map, t_point p)
 {
 	t_point	transformed;
-	int		center_x;
-	int		center_y;
+	float	center_x;
+	float	center_y;
 
-	center_x = map->width / 2;
-	center_y = map->height / 2;
-	transformed.x = p.x - center_x;
-	transformed.y = p.y - center_y;
-	transformed.z = p.z;
+	transformed.x = p.x * map->scale;
+	transformed.y = p.y * map->scale;
+	transformed.z = p.z * map->z_scale;
+	center_x = (map->width / 2.0) * map->scale;
+	center_y = (map->height / 2.0) * map->scale;
+	transformed.x -= center_x;
+	transformed.y -= center_y;
 	if (map->rotate_x != 0)
 		transformed = ft_rotate_x(transformed, map->rotate_x);
 	if (map->rotate_y != 0)

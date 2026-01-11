@@ -6,7 +6,7 @@
 /*   By: thfernan <thfernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 16:33:08 by thfernan          #+#    #+#             */
-/*   Updated: 2026/01/11 11:09:43 by thfernan         ###   ########.fr       */
+/*   Updated: 2026/01/11 11:37:08 by thfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,10 @@ int	ft_interpolate_color(int c1, int c2, float t)
 t_point	ft_isometric_proj(t_map *map, t_point p)
 {
 	t_point	screen;
-	double	x;
-	double	y;
 
-	x = p.x * map->scale;
-	y = p.y * map->scale;
-	screen.x = (x - y) * cos(ISO_ANGLE);
-	screen.y = (x + y) * sin(ISO_ANGLE) - (p.z * map->z_scale);
+	(void)map;
+	screen.x = (p.x - p.y) * cos(ISO_ANGLE);
+	screen.y = (p.x + p.y) * sin(ISO_ANGLE) - p.z;
 	screen.z = p.z;
 	return (screen);
 }

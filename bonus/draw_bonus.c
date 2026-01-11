@@ -6,7 +6,7 @@
 /*   By: thfernan <thfernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/09 16:46:10 by thfernan          #+#    #+#             */
-/*   Updated: 2026/01/11 07:01:47 by thfernan         ###   ########.fr       */
+/*   Updated: 2026/01/11 11:44:55 by thfernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,26 @@ void	ft_draw_neighbors(t_map *map, int x, int y)
 {
 	t_point	current_p;
 	t_point	next_p;
+	t_point	current_transformed;
+	t_point	next_transformed;
 
-	current_p = ft_apply_transformations(map, map->points[y][x]);
+	current_p = map->points[y][x];
+	current_transformed = ft_apply_transformations(map, current_p);
 	if (x < map->width - 1)
 	{
-		next_p = ft_apply_transformations(map, map->points[y][x + 1]);
-		ft_draw_line(map, current_p, next_p);
+		next_p = map->points[y][x + 1];
+		next_transformed = ft_apply_transformations(map, next_p);
+		current_transformed.z = current_p.z;
+		next_transformed.z = next_p.z;
+		ft_draw_line(map, current_transformed, next_transformed);
 	}
 	if (y < map->height - 1)
 	{
-		next_p = ft_apply_transformations(map, map->points[y + 1][x]);
-		ft_draw_line(map, current_p, next_p);
+		next_p = map->points[y + 1][x];
+		next_transformed = ft_apply_transformations(map, next_p);
+		current_transformed.z = current_p.z;
+		next_transformed.z = next_p.z;
+		ft_draw_line(map, current_transformed, next_transformed);
 	}
 }
 
