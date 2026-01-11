@@ -6,7 +6,7 @@
 #    By: thfernan <thfernan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/09 16:12:30 by thfernan          #+#    #+#              #
-#    Updated: 2026/01/09 17:47:17 by thfernan         ###   ########.fr        #
+#    Updated: 2026/01/11 04:28:16 by thfernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,10 +33,14 @@ BONUS_DIR = bonus
 #=================================================================#
 
 SRCS = fdf.c pixel.c hook.c draw.c read_map.c \
+		bounds.c draw_utils.c
 
 OBJS = $(SRCS:.c=.o)
 
-BONUS_SRCS = fdf_bonus.c \
+BONUS_SRCS = fdf_bonus.c fdf_utils_bonus.c pixel_bonus.c \
+			hook_bonus.c draw_bonus.c draw_utils_bonus.c \
+			read_map_bonus.c bounds_bonus.c projections_bonus.c \
+			transformations_bonus.c
 			
 BONUS_SRC_PATH = $(addprefix $(BONUS_DIR)/, $(BONUS_SRCS))
 BONUS_OBJS = $(BONUS_SRC_PATH:.c=.o)
@@ -69,8 +73,8 @@ $(LIBFT_A):
 
 bonus: $(BONUS)
 
-$(BONUS): $(BONUS_OBJS) $(LIBFT_A)
-	@$(CC) $(BONUS_OBJS) $(LIBFT_A) -o $(BONUS)
+$(BONUS): $(BONUS_OBJS) $(LIBFT_A) $(MLX_LIB)
+	@$(CC) $(BONUS_OBJS) $(LIBFT_A) $(MLX_LIB) $(MLX_FLAGS) -o $(BONUS)
 	@echo "$(GREEN)Bonus ready $(RESET)"
 
 %.o: %.c
